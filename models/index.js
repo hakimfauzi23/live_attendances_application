@@ -35,4 +35,15 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+// Models
+db.Division = require("../models/Division")(sequelize, Sequelize);
+db.JobTitle = require("../models/JobTitle")(sequelize, Sequelize);
+
+
+// Relations division -> job title
+db.Division.hasMany(db.JobTitle, { as: "jobTitles" });
+db.JobTitle.belongsTo(db.Division, {
+  foreignKey: "division_id",
+  as: "division",
+});
 module.exports = db;
