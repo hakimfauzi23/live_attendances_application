@@ -38,6 +38,7 @@ db.Sequelize = Sequelize;
 // Models
 db.Division = require("../models/Division")(sequelize, Sequelize);
 db.JobTitle = require("../models/JobTitle")(sequelize, Sequelize);
+db.Employee = require("../models/Employee")(sequelize, Sequelize);
 
 
 // Relations division -> job title
@@ -46,4 +47,12 @@ db.JobTitle.belongsTo(db.Division, {
   foreignKey: "division_id",
   as: "division",
 });
+
+// Relations job title -> employee
+db.JobTitle.hasMany(db.Employee, { as: "employees" });
+db.Employee.belongsTo(db.JobTitle, {
+  foreignKey: "job_title_id",
+  as: "jobTitles",
+});
+
 module.exports = db;
