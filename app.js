@@ -4,10 +4,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var divisionsRouter = require('./routes/divisions');
 var jobTitlesRouter = require('./routes/job-titles');
 var employeesRouter = require('./routes/employee');
+var usersRouter = require('./routes/users');
 
 var app = express();
 
@@ -22,5 +22,6 @@ app.use('/users', usersRouter);
 app.use('/divisions', divisionsRouter);
 app.use('/job-titles', jobTitlesRouter);
 app.use('/employees', employeesRouter);
+app.use('/users', usersRouter);
 
 module.exports = app;
