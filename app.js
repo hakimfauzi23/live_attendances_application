@@ -1,13 +1,16 @@
+require("dotenv").config();
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var verifyToken = require('./middlewares/verifyToken');
 
 var indexRouter = require('./routes/index');
 var divisionsRouter = require('./routes/divisions');
 var jobTitlesRouter = require('./routes/job-titles');
 var employeesRouter = require('./routes/employee');
 var usersRouter = require('./routes/users');
+var authRouter = require('./routes/auth');
 
 var app = express();
 
@@ -23,5 +26,6 @@ app.use('/divisions', divisionsRouter);
 app.use('/job-titles', jobTitlesRouter);
 app.use('/employees', employeesRouter);
 app.use('/users', usersRouter);
+app.use('/auth', authRouter);
 
 module.exports = app;

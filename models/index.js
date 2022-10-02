@@ -40,6 +40,7 @@ db.Division = require("../models/Division")(sequelize, Sequelize);
 db.JobTitle = require("../models/JobTitle")(sequelize, Sequelize);
 db.Employee = require("../models/Employee")(sequelize, Sequelize);
 db.User = require("../models/User")(sequelize, Sequelize);
+db.RefreshToken = require("../models/RefreshToken")(sequelize, Sequelize);
 
 
 // Relations division -> job title
