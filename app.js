@@ -11,6 +11,7 @@ var jobTitlesRouter = require('./routes/job-titles');
 var employeesRouter = require('./routes/employee');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
+var settingRouter = require('./routes/setting');
 
 var app = express();
 
@@ -27,5 +28,6 @@ app.use('/job-titles', jobTitlesRouter);
 app.use('/employees', employeesRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
+app.use('/settings', settingRouter);
 
 module.exports = app;
