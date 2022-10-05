@@ -66,4 +66,11 @@ db.User.belongsTo(db.Employee, {
   as: "employee",
 });
 
+// Relations employee -> user
+db.User.hasMany(db.AbsenceData, { as: "user_data" });
+db.AbsenceData.belongsTo(db.User, {
+  foreignKey: "user_id",
+  as: "user",
+});
+
 module.exports = db;
