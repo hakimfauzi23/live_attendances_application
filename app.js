@@ -1,35 +1,35 @@
 require("dotenv").config();
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var verifyToken = require('./middlewares/verifyToken');
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const verifyToken = require("./middlewares/verifyToken");
 
-var indexRouter = require('./routes/index');
-var divisionsRouter = require('./routes/divisions');
-var jobTitlesRouter = require('./routes/job-titles');
-var employeesRouter = require('./routes/employee');
-var usersRouter = require('./routes/users');
-var authRouter = require('./routes/auth');
-var settingRouter = require('./routes/setting');
-var absencesRouter = require('./routes/absences-data');
+const indexRouter = require("./routes/index");
+const divisionsRouter = require("./routes/divisions");
+const jobTitlesRouter = require("./routes/job-titles");
+const employeesRouter = require("./routes/employee");
+const usersRouter = require("./routes/users");
+const authRouter = require("./routes/auth");
+const settingRouter = require("./routes/setting");
+const absencesRouter = require("./routes/absences-data");
 
-var app = express();
+const app = express();
 
-app.use(logger('dev'));
+app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/divisions', divisionsRouter);
-app.use('/job-titles', jobTitlesRouter);
-app.use('/employees', employeesRouter);
-app.use('/users', usersRouter);
-app.use('/auth', authRouter);
-app.use('/settings', settingRouter);
-app.use('/absences',verifyToken, absencesRouter);
+app.use("/", indexRouter);
+app.use("/users", verifyToken, usersRouter);
+app.use("/divisions", verifyToken, divisionsRouter);
+app.use("/job-titles", verifyToken, jobTitlesRouter);
+app.use("/employees", verifyToken, employeesRouter);
+app.use("/users", verifyToken, usersRouter);
+app.use("/auth", authRouter);
+app.use("/settings", verifyToken, settingRouter);
+app.use("/absences", verifyToken, absencesRouter);
 
 module.exports = app;
