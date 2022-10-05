@@ -12,6 +12,7 @@ var employeesRouter = require('./routes/employee');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 var settingRouter = require('./routes/setting');
+var absencesRouter = require('./routes/absences-data');
 
 var app = express();
 
@@ -29,5 +30,6 @@ app.use('/employees', employeesRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/settings', settingRouter);
+app.use('/absences',verifyToken, absencesRouter);
 
 module.exports = app;

@@ -42,6 +42,7 @@ db.Employee = require("../models/Employee")(sequelize, Sequelize);
 db.User = require("../models/User")(sequelize, Sequelize);
 db.RefreshToken = require("../models/RefreshToken")(sequelize, Sequelize);
 db.Setting = require("../models/Setting")(sequelize, Sequelize);
+db.AbsenceData = require("../models/AbsenceData")(sequelize, Sequelize);
 
 
 // Relations division -> job title
