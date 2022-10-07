@@ -1,6 +1,9 @@
 const { User } = require("../../../models");
+const Pagination = require("../../../helpers/Pagination");
 
 module.exports = async (req, res) => {
+  const { page, size } = req.query;
+  const { limit, offset } = Pagination.getPagination(page, size);
   const attributes = ["id", "role"];
   const include = [
     {
@@ -20,11 +23,14 @@ module.exports = async (req, res) => {
       ],
     },
   ];
-  const users = await User.findAll({
+  const data = await User.findAndCountAll({
     attributes: attributes,
     include: include,
+    limit,
+    offset,
   });
 
+  const users = Pagination.getPagingData(data, page, limit);
   return res.json({
     status: "success",
     data: users,
