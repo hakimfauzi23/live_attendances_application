@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  app:
+    image: live_attendances_app:test-local
+    container_name: live_attendances_api
+    tty: true
+    ports:
+      - '9001:80'
+    env_file: 
+      - .env
